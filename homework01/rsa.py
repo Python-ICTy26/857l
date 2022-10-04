@@ -1,7 +1,6 @@
 import random
 import typing as tp
 
-
 def is_prime(n: int) -> bool:
     """
     Tests to see if a number is prime.
@@ -16,7 +15,7 @@ def is_prime(n: int) -> bool:
     k = 0
     for i in range(2, n):
         if n % i == 0:
-            k == 1
+            k = 1
         if k > 0:
             return False
 
