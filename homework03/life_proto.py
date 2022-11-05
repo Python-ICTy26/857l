@@ -159,6 +159,7 @@ class GameOfLife:
             for j in range(cell[1] - 1, cell[1] + 2):
                 if -1 < i < self.cell_height and -1 < j < self.cell_width and cell != (i, j):
                     neighbours_cells.append(self.grid[i][j])
+                    
         return neighbours_cells
 
     def get_next_generation(self) -> Grid:
