@@ -48,7 +48,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
 def encrypt(pk: tp.Tuple[int, int], plaintext: str) -> tp.List[int]:
     key, n = pk
-    cipher = [(ord(char)**key) % n for char in plaintext]
+    cipher = [(ord(char) ** key) % n for char in plaintext]
     return cipher
 
 
