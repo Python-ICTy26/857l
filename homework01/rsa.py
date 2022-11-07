@@ -32,7 +32,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
     n = p * q
 
-    phi = (p-1) * (q-1)
+    phi = (p - 1) * (q - 1)
 
     e = random.randrange(1, phi)
 
