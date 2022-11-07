@@ -9,7 +9,6 @@ Cell = tp.Tuple[int, int]
 Cells = tp.List[int]
 Grid = tp.List[Cells]
 
-
 class GameOfLife:
     def __init__(
         self,
