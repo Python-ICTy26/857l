@@ -11,7 +11,7 @@ def is_prime(n: int) -> bool:
     return True
 
 
-def gcd(a: int, b: int) -> int:ra
+def gcd(a: int, b: int) -> int:
     while a != 0 and b != 0:
         if a >= b:
             a %= b
