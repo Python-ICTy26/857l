@@ -17,15 +17,10 @@ class GameOfLife:
         randomize: bool = True,
         max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
-        # Размер клеточного поля
         self.rows, self.cols = size
-        # Предыдущее поколение клеток
         self.prev_generation = self.create_grid()
-        # Текущее поколение клеток
         self.curr_generation = self.create_grid(randomize=randomize)
-        # Максимальное число поколений
         self.max_generations = max_generations
-        # Текущее число поколений
         self.generations = 1
 
     def create_grid(self, randomize: bool = False) -> Grid:
@@ -70,32 +65,20 @@ class GameOfLife:
         return new_grid
 
     def step(self) -> None:
-        """
-        Выполнить один шаг игры.
-        """
         self.prev_generation = self.curr_generation
         self.curr_generation = (self.get_next_generation(),)
         self.generations += 1
 
     @property
     def is_max_generations_exceeded(self) -> bool:
-        """
-        Не превысило ли текущее число поколений максимально допустимое.
-        """
         return self.generations > self.max_generations
 
     @property
     def is_changing(self) -> bool:
-        """
-        Изменилось ли состояние клеток с предыдущего шага.
-        """
         return self.curr_generation != self.prev_generation
 
     @staticmethod
     def from_file(filename: pathlib.Path) -> "GameOfLife":
-        """
-        Прочитать состояние клеток из указанного файла.
-        """
         with open(filename) as f:
             grid = []
             width = 0
@@ -112,9 +95,6 @@ class GameOfLife:
         return game
 
     def save(self, filename: pathlib.Path) -> None:
-        """
-        Сохранить текущее состояние клеток в указанный файл.
-        """
         with open(filename, "w", encoding="utf-8") as f:
             f.write(
                 "\n".join([" ".join(map(str, self.curr_generation[i])) for i in range(self.rows)])
