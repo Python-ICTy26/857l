@@ -10,22 +10,24 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-
-    key_length = len(keyword)
-    key_int = [ord(i) for i in keyword]
-    plaintext_int = [ord(i) for i in plaintext]
-
-    for i in range(len(plaintext_int)):
-        if plaintext_int[i] == 32:
-            ciphertext += " "
-            continue
-        elif plaintext[i].isupper():
-            value = (plaintext_int[i] + key_int[i % key_length]) % 26
-            ciphertext += chr(value + 65)
+    for i in range(len(plaintext)):
+        if plaintext[i].isalpha():
+            if plaintext[i].isupper():
+                ciphertext += chr(
+                    (ord(plaintext[i]) - 2 * ord("A") + ord(keyword[i % len(keyword)].upper()))
+                    % 26
+                    % 26
+                    + ord("A")
+                )
+            else:
+                ciphertext += chr(
+                    (ord(plaintext[i]) - 2 * ord("a") + ord(keyword[i % len(keyword)].lower()))
+                    % 26
+                    % 26
+                    + ord("a")
+                )
         else:
-            value = (plaintext_int[i] + key_int[i % key_length] - 64) % 26
-            ciphertext += chr(value + 97)
-
+            ciphertext += plaintext[i]
     return ciphertext
 
 
@@ -41,19 +43,16 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     'ATTACKATDAWN'
     """
     plaintext = ""
-    key_length = len(keyword)
-    key_int = [ord(i) for i in keyword]
-    ciphertext_int = [ord(i) for i in ciphertext]
-
-    for i in range(len(ciphertext_int)):
-        if ciphertext_int[i] == 32:
-            plaintext += " "
-            continue
-        elif chr(ciphertext_int[i]).isupper():
-            value = (ciphertext_int[i] - key_int[i % key_length]) % 26
-            plaintext += chr(value + 65)
+    for i in range(len(ciphertext)):
+        if ciphertext[i].isalpha():
+            if ciphertext[i].isupper():
+                plaintext += chr(
+                    (ord(ciphertext[i]) - ord(keyword[i % len(keyword)].upper())) % 26 + ord("A")
+                )
+            else:
+                plaintext += chr(
+                    (ord(ciphertext[i]) - ord(keyword[i % len(keyword)].lower())) % 26 + ord("a")
+                )
         else:
-            value = (ciphertext_int[i] - key_int[i % key_length]) % 26
-            plaintext += chr(value + 97)
-
+            plaintext += ciphertext[i]
     return plaintext
