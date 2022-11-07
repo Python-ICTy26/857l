@@ -4,6 +4,7 @@ from random import randint
 
 T = tp.TypeVar("T")
 
+
 def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
     """Прочитать Судоку из указанного файла"""
     path = pathlib.Path(path)
