@@ -99,19 +99,3 @@ class GameOfLife:
             f.write(
                 "\n".join([" ".join(map(str, self.curr_generation[i])) for i in range(self.rows)])
             )
-
-if __name__ == "__main__":
-    grid = [
-        [1, 1, 0, 0, 1, 1, 1, 1],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [1, 0, 1, 1, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0, 1],
-        [1, 0, 1, 1, 1, 1, 0, 0],
-        [1, 1, 1, 1, 0, 1, 1, 1],
-    ]
-    rows = 6
-    cols = 8
-    game = GameOfLife((rows, cols))
-    game.curr_generation = grid
-    neighbours = game.get_neighbours((2, 0))
-    print(neighbours)
