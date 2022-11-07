@@ -18,7 +18,6 @@ def is_prime(n: int) -> bool:
             k = 1
         if k > 0:
             return False
-
     return True
 
 
