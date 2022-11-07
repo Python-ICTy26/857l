@@ -18,6 +18,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     for i in range(len(plaintext_int)):
         if plaintext_int[i] == 32:
             plaintext += " "
+            continue
         elif plaintext[i].isupper():
             value = (plaintext_int[i] + key_int[i % key_length]) % 26
             ciphertext += chr(value + 65)
@@ -47,6 +48,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     for i in range(len(ciphertext_int)):
         if ciphertext_int[i] == 32:
             plaintext += " "
+            continue
         elif chr(ciphertext_int[i]).isupper():
             value = (ciphertext_int[i] - key_int[i % key_length]) % 26
             plaintext += chr(value + 65)
