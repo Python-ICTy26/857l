@@ -1,5 +1,6 @@
 import typing as tp
 
+
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     Encrypts plaintext using a Caesar cipher.
@@ -14,23 +15,16 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-
     for i in plaintext:
-        if 65 <= ord(i) <= 122:
+        if i.isalpha():
             if i.isupper():
-                if ord(i) >= 87:
-                    ciphertext += chr(65 + (ord(i) + shift) % 91)
-                else:
-                    ciphertext += chr(ord(i) + shift)
+                ciphertext += chr(((ord(i) - ord("A")) + shift) % 26 + ord("A"))
             else:
-                if ord(i) >= 119:
-                    ciphertext += chr(97 + (ord(i) + shift) % 123)
-                else:
-                    ciphertext += chr(ord(i) + shift)
+                ciphertext += chr(((ord(i) - ord("a")) + shift) % 26 + ord("a"))
         else:
             ciphertext += i
-
     return ciphertext
+
 
 def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
@@ -46,22 +40,14 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-
     for i in ciphertext:
-        if 65 <= ord(i) <= 122:
+        if i.isalpha():
             if i.isupper():
-                if ord(i) <= 68:
-                    plaintext += chr(90 - (2 - (ord(i) % 65)))
-                else:
-                    plaintext += chr(ord(i) - shift)
+                plaintext += chr(((ord(i) - ord("A")) - shift) % 26 + ord("A"))
             else:
-                if ord(i) <= 99:
-                    plaintext += chr(122 - (2 - (ord(i) % 97)))
-                else:
-                    plaintext += chr(ord(i) - shift)
+                plaintext += chr(((ord(i) - ord("a")) - shift) % 26 + ord("a"))
         else:
             plaintext += i
-
     return plaintext
 
 
