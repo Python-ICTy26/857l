@@ -16,8 +16,6 @@ class GameOfLife:
         self.width = width
         self.height = height
         self.cell_size = cell_size
-        
-        
         # Устанавливаем размер окна
         self.screen_size = width, height
         # Создание нового окна
