@@ -26,11 +26,11 @@ class GameOfLife:
     def create_grid(self, randomize: bool = False) -> Grid:
 
         grid = []
-        for i in range(self.cell_height):
-            grid.append([0] * self.cell_width)
+        for i in range(self.cols):
+            grid.append([0] * self.rows)
 
-        for i in range(self.cell_height):
-            for j in range(self.cell_width):
+        for i in range(self.cols):
+            for j in range(self.rows):
                 if randomize:
                     grid[i][j] = random.randint(0, 1)
                 else:
@@ -43,15 +43,15 @@ class GameOfLife:
 
         for i in range(cell[0] - 1, cell[0] + 2):
             for j in range(cell[1] - 1, cell[1] + 2):
-                if -1 < i < self.cell_height and -1 < j < self.cell_width and cell != (i, j):
-                    neighbours_cells.append(self.grid[i][j])
+                if -1 < i < self.cols and -1 < j < self.rows and cell != (i, j):
+                    neighbours_cells.append(self.curr_generation[i][j])
         return neighbours_cells
 
     def get_next_generation(self) -> Grid:
 
         new_grid = [row.copy() for row in self.grid]
-        for i in range(self.cell_height):
-            for j in range(self.cell_width):
+        for i in range(self.cols):
+            for j in range(self.rows):
                 neighbours = self.get_neighbours((i, j))
                 alive_neighbours_count = sum(neighbours)
 
@@ -99,3 +99,19 @@ class GameOfLife:
             f.write(
                 "\n".join([" ".join(map(str, self.curr_generation[i])) for i in range(self.rows)])
             )
+
+if __name__ == "__main__":
+    grid = [
+        [1, 1, 0, 0, 1, 1, 1, 1],
+        [0, 1, 1, 1, 1, 1, 1, 0],
+        [1, 0, 1, 1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 1, 1, 0, 0],
+        [1, 1, 1, 1, 0, 1, 1, 1],
+    ]
+    rows = 6
+    cols = 8
+    game = GameOfLife((rows, cols))
+    game.curr_generation = grid
+    neighbours = game.get_neighbours((2, 0))
+    print(neighbours)
