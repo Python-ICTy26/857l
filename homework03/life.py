@@ -49,17 +49,17 @@ class GameOfLife:
 
     def get_next_generation(self) -> Grid:
 
-        new_grid = [row.copy() for row in self.grid]
+        new_grid = [row.copy() for row in self.curr_generation]
         for i in range(self.cols):
             for j in range(self.rows):
                 neighbours = self.get_neighbours((i, j))
                 alive_neighbours_count = sum(neighbours)
 
-                k = not self.grid[i][j]
+                k = not self.curr_generation[i][j]
 
-                if not self.grid[i][j] and alive_neighbours_count == 3:
+                if not self.curr_generation[i][j] and alive_neighbours_count == 3:
                     new_grid[i][j] = 1
-                elif self.grid[i][j] and alive_neighbours_count not in (2, 3):
+                elif self.curr_generation[i][j] and alive_neighbours_count not in (2, 3):
                     new_grid[i][j] = 0
 
         return new_grid
