@@ -1,4 +1,3 @@
-import random
 import typing as tp
 
 def is_prime(n: int) -> bool:
@@ -21,7 +20,7 @@ def is_prime(n: int) -> bool:
     return True
 
 
-def gcd(a: int, b: int) -> int:
+def gcd(a: int, b: int) -> int:ra
     """
     Euclid's algorithm for determining the greatest common divisor.
 
