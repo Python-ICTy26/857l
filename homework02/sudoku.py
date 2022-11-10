@@ -80,22 +80,18 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     return possible_values
 
 
-def solve(grid: tp.List[tp.List[str]]) -> tp.List[tp.List[str]]:
+def solve(grid: tp.List[tp.List[str]]):
     empty_position = find_empty_positions(grid)
     if empty_position == (-1, -1):
         return grid
-    else:
-        possible_values = find_possible_values(grid, empty_position)
-        if possible_values == None:
-            return grid
-        else:
-            for i in possible_values:
-                grid[empty_position[0]][empty_position[1]] = str(i)
-                grid = solve(grid)
-                if find_empty_positions(grid) == (-1, -1):
-                    return grid
-                grid[empty_position[0]][empty_position[1]] = "."
-    return grid
+    possible_values = find_possible_values(grid, empty_position)
+    for i in possible_values:
+        grid[empty_position[0]][empty_position[1]] = i
+        new_solve = solve(grid)
+        if new_solve:
+            return new_solve
+    grid[empty_position[0]][empty_position[1]] = "."
+    return None
 
 
 def check_solution(solution: tp.List[tp.List[str]]) -> bool:
