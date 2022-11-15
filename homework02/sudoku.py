@@ -119,19 +119,17 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
 
 
 def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
-    size_of_sudoku = 9
-    new_sudoku = [["."] * size_of_sudoku] * size_of_sudoku
-    new_sudoku = solve(new_sudoku)
-
-    N = 81 - N
-    for i in range(N):
-        while True:
+    grid = [["." for i in range(9)] for j in range(9)]
+    grid = solve(grid)
+    N = N if N <= 81 else 81
+    for i in range(81 - N):
+        x = randint(0, 8)
+        y = randint(0, 8)
+        while grid[x][y] == ".":
             x = randint(0, 8)
             y = randint(0, 8)
-            if new_sudoku[x][y] != ".":
-                new_sudoku[x][y] = "."
-                break
-    return new_sudoku
+        grid[x][y] = "."
+    return grid
 
 
 if __name__ == "__main__":
