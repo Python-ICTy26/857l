@@ -63,7 +63,7 @@ class GameOfLife:
                     new_grid[i][j] = 0
 
         return new_grid
-
+    
     def step(self) -> None:
         self.prev_generation = self.curr_generation.copy()
         self.curr_generation = self.get_next_generation()
