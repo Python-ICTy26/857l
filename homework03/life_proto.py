@@ -44,7 +44,7 @@ class GameOfLife:
         self.screen.fill(pygame.Color("white"))
 
         # Создание списка клеток
-        self.grid = self.grid
+        self.grid = self.create_grid(randomize=True)
 
         running = True
         while running:
