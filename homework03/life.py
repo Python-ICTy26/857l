@@ -62,8 +62,8 @@ class GameOfLife:
                 elif self.curr_generation[i][j] and alive_neighbours_count not in (2, 3):
                     new_grid[i][j] = 0
 
-        return new_grid
-    
+        return new_grid   
+
     def step(self) -> None:
         self.prev_generation = self.curr_generation.copy()
         self.curr_generation = self.get_next_generation()
