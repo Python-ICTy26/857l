@@ -9,11 +9,9 @@ class Console(UI):
         super().__init__(life)
 
     def draw_borders(self, screen) -> None:
-        """Отобразить рамку."""
-        self.screen.border
+        screen.border("|", "|", "-", "-", "+", "+", "+", "+")
 
     def draw_grid(self, screen) -> None:
-        """Отобразить состояние клеток."""
         pass
 
     def run(self) -> None:
