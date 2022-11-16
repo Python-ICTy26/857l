@@ -66,7 +66,7 @@ class GameOfLife:
 
     def step(self) -> None:
         self.prev_generation = self.curr_generation
-        self.curr_generation = (self.get_next_generation(),)
+        self.curr_generation = self.get_next_generation()
         self.generations += 1
 
     @property
