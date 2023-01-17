@@ -116,7 +116,6 @@ def add_write_tree_subparser(subparsers) -> None:
 
 
 def add_commit_tree_subparser(subparsers) -> None:
-    # FIXME: Add author
     commit_tree_subparser = subparsers.add_parser("commit-tree", help="Create a new commit object.")
     commit_tree_subparser.add_argument("tree", help="An existing tree object")
     commit_tree_subparser.add_argument("-p", dest="parent", help="Id of a parent commit object")
